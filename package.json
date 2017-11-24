@@ -5,9 +5,9 @@
   "main": "classes_javascript.js",
   "scripts": {
     "test": "node_modules/.bin/mocha",
-    "preitemPick": "node-sass jquery/styles/item_pick.scss jquery/dist/item_pick.css",
-    "itemPick": "browserify --debug jquery/scripts/main.js -t babelify -o jquery/dist/bundle.js",
-    "build-watch": "nodemon --watch jquery/scripts --watch jquery/styles/item_pick.scss --exec 'npm run itemPick'"
+    "preitemPick": "node-sass toolkit/styles/item_pick.scss toolkit/dist/item_pick.css",
+    "itemPick": "browserify --debug toolkit/scripts/main.js -t babelify -o toolkit/dist/bundle.js",
+    "build-watch": "nodemon --watch toolkit/scripts --watch toolkit/styles/item_pick.scss --exec 'npm run itemPick'"
   },
   "author": "",
   "license": "ISC",
