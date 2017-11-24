@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    firstname = 'Ashwin';
+    lastname = 'Mahendra';
+
+    let employee = {
+        firstname: 'Bharath',
+        lastname: 'Reddy',
+        getFullName() {
+            return 'Full name = ' + this.firstname + ' ' + this.lastname;
+        }
+    };
+
+    let fullName = employee.getFullName;
+    console.log(fullName()); // This would print Ashwin Mahendra
+    console.log(employee.getFullName()); //This would print Bharath Reddy
+
+</script>
+</body>
+</html>

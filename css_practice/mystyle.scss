@@ -1,0 +1,62 @@
+@mixin grid($val){
+  @if($val){
+    display: flex;
+  } @else {
+    display: block;
+  }
+}
+
+@mixin flex($val) {
+  flex: $val;
+}
+
+@mixin padding($values...){
+  padding: $values;
+}
+
+@mixin columns($backgroundColor) {
+  @include padding(10px 10px 10px 10px);
+  box-sizing: border-box;
+  box-shadow: 0px 0px 6px 0px #AAA7A7;
+  background-color: $backgroundColor;
+  margin-top: 5px;
+  min-width: 20em;
+}
+
+.container {
+  @include grid(true);
+  flex-wrap: wrap;
+  width: 100%;
+  @include padding(20px 20px 20px 20px);
+  box-sizing: border-box;
+  font-size: 1em;
+  font-weight: 100;
+  font-family: Verdana;
+  color: #7a7b7c;
+  justify-content: space-between;
+}
+
+.column.width-1 {
+  @include flex(1);
+  @include columns(#FCEAEB);
+}
+
+.column.width-2 {
+  @include flex(2);
+  @include columns(#F5FCEA);
+}
+
+.column.width-3 {
+  @include flex(3);
+  @include columns(#EAF4FC);
+}
+
+.column:first-child {
+    margin-left:0;
+}
+
+.heading {
+  font-size: 1.2em;
+  font-weight: bold;
+  text-align: center;
+}

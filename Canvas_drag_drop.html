@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #div1, #div2 {
+            display: block;
+            width: 200px;
+            height: 200px;
+            border: 1px solid gray;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="simpleLineDraw" width="300" height="300"></canvas>
+    <div id="div1" ondrop="attachDraggedElement(event);" ondragover="allowDrop(event);">
+        <img src="https://botw-pd.s3.amazonaws.com/styles/logo-thumbnail/s3/0019/2765/brand.gif" width="50px" height="50px"
+        draggable="true" ondragstart="generateId(event);" id="img1">
+    </div>
+    <br><hr>
+    <div id="div2" ondrop="attachDraggedElement(event);" ondragover="allowDrop(event);"></div>
+    <script type="application/javascript">
+
+        /* Sample code to draw a simple 2d line inside a canvas */
+        var lineCanvas = document.getElementById('simpleLineDraw');
+        var ctx = lineCanvas.getContext("2d");
+        ctx.moveTo(0,0);
+        ctx.lineTo(300,300);
+        ctx.stroke();
+
+        /* sample code to illustrate drag and drop api of HTML5 */
+        var generateId = function(event) {
+            event.dataTransfer.setData('text', event.target.id);
+        };
+        var allowDrop = function (event) {
+            event.preventDefault();
+        };
+
+        var attachDraggedElement = function(event) {
+            event.preventDefault();
+            var elementId = event.dataTransfer.getData('text');
+            console.log("elementId = " + elementId);
+            event.target.appendChild(document.getElementById(elementId));
+        }
+    </script>
+</body>
+</html>

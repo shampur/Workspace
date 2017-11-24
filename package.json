@@ -1,0 +1,32 @@
+{
+  "name": "nodejs_practice",
+  "version": "1.0.0",
+  "description": "This is a sample test prep",
+  "main": "classes_javascript.js",
+  "scripts": {
+    "test": "node_modules/.bin/mocha",
+    "preitemPick": "node-sass jquery/styles/item_pick.scss jquery/dist/item_pick.css",
+    "itemPick": "browserify --debug jquery/scripts/main.js -o jquery/dist/bundle.js",
+    "build-watch": "nodemon --watch jquery/scripts --watch jquery/styles --exec 'npm run itemPick'"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel": "^6.23.0",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "babelify": "^8.0.0",
+    "browserify": "^14.5.0",
+    "chai": "^4.1.2",
+    "mocha": "^4.0.1",
+    "node-sass": "^4.7.1",
+    "nodemon": "^1.12.1",
+    "pkg": "^4.3.0-beta.1",
+    "ssh2": "^0.5.5",
+    "watch": "^1.0.2"
+  },
+  "dependencies": {
+    "jquery": "^3.2.1"
+  }
+}

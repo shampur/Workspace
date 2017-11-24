@@ -1,0 +1,93 @@
+@mixin blocks {
+  border: .2em dashed gainsboro;
+  box-sizing: border-box;
+  padding: 1em;
+}
+
+@mixin min-width-block {
+  min-width: 25em;
+  min-height: 10em;
+}
+
+@mixin flex {
+  display: flex;
+}
+
+@mixin listBlocks {
+  flex-direction: column;
+  flex:1;
+  justify-content: space-between;
+  font-weight: 100;
+  font-family: CiscoSans;
+}
+
+@mixin border($color) {
+  border: 2px solid $color;
+}
+
+.container {
+  @include flex;
+  padding: 1em;
+  box-sizing: border-box;
+  justify-content: space-between;
+  width: 100%;
+  flex-wrap: wrap;
+  flex-basis: 30%;
+}
+
+
+.list {
+  @include blocks;
+  @include flex;
+  @include min-width-block;
+  @include listBlocks;
+}
+
+.controls {
+  flex:1;
+  @include flex;
+  @include min-width-block;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.bucket {
+  @include blocks;
+  @include flex;
+  @include min-width-block;
+  @include listBlocks;
+}
+
+.item {
+  min-height: 1em;
+  flex: 1;
+  margin-top: .5em;
+  box-shadow: 0px 0px 6px 0px #AAA7A7;
+  background-color: aliceblue;
+  padding: .5em;
+  display: flex;
+  box-sizing: border-box;
+  @include border(transparent);
+  transition: transform .2s linear;
+}
+
+.item:hover:not(.selected) {
+  transform: scale(1.03);
+  @include border(transparent);
+  cursor: pointer;
+}
+
+.item.selected {
+  @include border(#2e9ff5);
+  transform: scale(1.03);
+  cursor: pointer;
+}
+
+.button {
+  margin: auto;
+  display: block;
+}
+
+.list .item .content {
+  margin:auto;
+}
