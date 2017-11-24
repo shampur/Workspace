@@ -67,5 +67,5 @@
   margin: auto;
   display: block; }
 
-.list .item .content {
-  margin: auto; }
+.item .content {
+  margin: auto !important; }
