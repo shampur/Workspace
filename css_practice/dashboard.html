@@ -28,5 +28,64 @@
             Script defer runs the script only after the rendering process is complete.
         </div>
     </div>
+    <div class="btn container">
+
+    </div>
+    <div id='recurse' class="container">
+        <div class="column width-3">
+            <div>
+                hello
+                <div>
+                    this is a
+                    <p>
+                        recursive block
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="application/javascript">
+        /*
+            One way of solving the scope problem is using a closure, other way is to use let instead of var
+            let provides a blocked scope instead of function scope like the use of var
+            In the above example using let eliminates the necessity of declaring an explicit function scope to
+            store the variable i;
+         */
+
+        for(var i=0; i<4; i++) {
+            let btn = document.createElement("button");
+            btn.appendChild(document.createTextNode('button - ' + i));
+            let btnContainer = document.getElementsByClassName('btn container')[0];
+            (function(i){
+                btn.addEventListener('click', function(event) {
+                    console.log('You clicked on button' + i);
+                });
+            })(i);
+            btnContainer.appendChild(btn);
+        }
+
+
+        /*
+            Recursively print all the nodes in dom
+         */
+        function recurseRun(elem, callback) {
+            if (!elem.hasChildNodes()){
+                callback(elem)
+            } else {
+                console.log("Node = " + elem.nodeName);
+                elem.childNodes.forEach((item) => {
+                    recurseRun(item, callback);
+                });
+            }
+        }
+
+        let el = document.getElementById('recurse');
+        recurseRun(el, (itm) => {
+            let content = itm.textContent.trim();
+            if(content.length > 0) {
+                console.log('Node content= '+ content);
+            }
+        });
+    </script>
 </body>
 </html>
