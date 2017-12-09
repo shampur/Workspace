@@ -86,6 +86,38 @@
                 console.log('Node content= '+ content);
             }
         });
+
+        /*
+            Simple Implementation of debouncing.
+         */
+
+        let debounce = function(func, wait) {
+            var timerId;
+            return function() {
+                let context = this;
+                let args = arguments;
+                clearTimeout(timerId);
+                timerId = setTimeout(() => {
+                    func.apply(context, args);
+                }, wait)
+            }
+        }
+
+        window.addEventListener('resize', debounce(function(event){
+            console.log('Event is getting fired!!')
+            console.log('window width = ' + window.innerWidth + ',  window height = ' + window.innerHeight);
+            console.log('Event target = ' + event.target);
+        }, 500))
+
+
+        let throttle = function(func, wait) {
+            var timerId, throttling = false;
+            return function() {
+                var context = this;
+                var args = arguments;
+                var 
+            }
+        }
     </script>
 </body>
 </html>

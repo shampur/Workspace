@@ -7,11 +7,13 @@
     "test": "node_modules/.bin/mocha",
     "preitemPick": "node-sass toolkit/styles/item_pick.scss toolkit/dist/item_pick.css",
     "itemPick": "browserify --debug toolkit/scripts/main.js -t babelify -o toolkit/dist/bundle.js",
-    "build-watch": "nodemon --watch toolkit/scripts --watch toolkit/styles/item_pick.scss --exec 'npm run itemPick'"
+    "build-watch": "nodemon --watch toolkit/scripts --watch toolkit/styles/item_pick.scss --exec 'npm run itemPick'",
+    "tsc": "tsc"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/node": "^8.0.57",
     "babel": "^6.23.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
@@ -24,6 +26,9 @@
     "nodemon": "^1.12.1",
     "pkg": "^4.3.0-beta.1",
     "ssh2": "^0.5.5",
+    "ts-node": "^3.3.0",
+    "typescript": "^2.6.2",
+    "typings": "^2.1.1",
     "watch": "^1.0.2"
   },
   "dependencies": {

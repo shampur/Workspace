@@ -40,7 +40,7 @@ Employee.prototype.concatenateAgeAndSalary = function () {
 };
 
 // Example to illustrate prototypical inheritance.
-// Functions, Data properties declared on the prototype of an object are accesible on all child objects that refer to the same prototype.
+// Functions, Data properties declared on the prototype of an object are accessible on all child objects that refer to the same prototype.
 emp1.concatenateAgeAndSalary();
 console.log("Concatenated salary and age = " + manager1.concatenatedValue);
 
