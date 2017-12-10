@@ -31,3 +31,31 @@ let myObj = {
 };
 
 (myObj.getPrintFunction())();
+
+/*
+    Generic functions
+ */
+
+function add<T>(a: T, b: T){
+    if (typeof a === "number" && typeof b === "number") {
+        let x: number;
+        x = a + b;
+        return x;
+    } else {
+        if (typeof a === 'string' && typeof b === 'string') {
+            let x: string;
+            x = a.concat(b);
+            return x;
+        } else {
+            return null;
+        }
+    }
+}
+
+
+let sum = add<Number>(5,5);
+let concatenatedString = add<String>('hello',' hi');
+
+console.log('addition of two numbers = ' + sum);
+console.log('addition of two strings = ' + concatenatedString);
+

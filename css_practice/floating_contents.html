@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        body{
+            box-sizing: border-box;
+        }
+        div.container {
+            width: 97%;
+            position: relative;
+            border: 2px saddlebrown dashed;
+            padding: 20px;
+            margin-right: 20px;
+        }
+
+        div.container .column {
+            float: right;
+            display: inline-block;
+            border: 2px darkolivegreen dotted;
+            margin-right: 10px;
+            padding: 10px;
+        }
+
+        .clearfix:after {
+            content: ' ';
+            display: table;
+            clear: both;
+        }
+
+        @media (min-width: 1024px ) {
+            div.container .column {
+                width: 20%;
+            }
+        }
+
+        @media (max-width: 600px) {
+            div.container .column {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container clearfix">
+        <div class="column">
+            <span>This is a column within the container!!, This is a column within the container!!,
+            This is a column within the container!!, This is a column within the container!!,
+                This is a column within the container!!, This is a column within the container!!</span>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -39,5 +39,27 @@ x = a.indexOf('m');
 console.log('x = ' + x);
 
 /*
+replace() - this function uses a regular expression to replace strings
+$1, $2...$n is used to access the regex capturing classes.
+ */
 
+let re  = /(\w+)\s(\w+)/g;
+let str = 'john connor, sarah connor';
+let newStr = str.replace(re, `$2 $1`);
+console.log('New string = ' + newStr);
+console.log('Old string = ' + str);
+
+
+/*
+includes() - this functions checks whether the specified string is present within the main string
+ */
+
+console.log('sun is present in samsung = ' + a.includes('sun'));
+
+/*
+repeat() - returns specified copies of the current string.
+slice() - same as array.slice()
+trim() - removes leading and trailing spaces.
+substr() - substring of the main string.
+split() - returns an array by splitting the current string based on a separator, regular expression.
  */

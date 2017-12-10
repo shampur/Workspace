@@ -187,10 +187,28 @@ displayOriginalArrays();
 a.splice(2,0,[100,200]);
 displayOriginalArrays();
 
+/*
+Small function to loop till 100 and print fizz for multiples of 3, buzz for multiples of 5 and fizzbuzz for multiples
+of 3 and 5
+ */
 
+let fizzbuzz = (n) => {
+    let arr = new Array(n).fill(' ').map((itm, index) => {
+        let num = index + 1;
+        if ((num % 3 === 0) && (num % 5 === 0)) {
+            return 'fizzbuzz';
+        } else {
+            if (num % 3 === 0) {
+                return ' fizz';
+            } else if (num % 5 === 0) {
+                return ' buzz';
+            } else {
+                return ' 0';
+            }
+        }
+    });
 
+    console.log(arr.join(', '));
+}
 
-
-
-
-
+fizzbuzz(100);
