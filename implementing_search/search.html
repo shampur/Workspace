@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        .grid{
+            display: grid;
+            grid-template-columns: 1fr;
+            justify-items: center;
+            padding: 10px;
+        }
+
+        .itm {
+            padding: 30px;
+        }
+
+        .searchBox {
+            width:400px;
+            height: 60px;
+            border-radius: 10px;
+            border: 1px solid dodgerblue;
+            margin-bottom: 20px;
+            font-family: Verdana;
+            font-size: 1.3em;
+            color:dimgrey;
+        }
+
+        label {
+            color:dimgrey;
+            font-family: Verdana;
+            font-size: 1.3em;
+        }
+
+        #recommendation {
+            padding: 5px;
+            border-radius: 5px;
+            width:98%;
+            transition: opacity .4s ease-in;
+            opacity: 0;
+        }
+
+        #recommendation div{
+            color:dimgrey;
+            font-family: Verdana;
+            font-size: 1.0em;
+        }
+
+        #recommendation.containsChildren {
+            opacity: 1;
+            border: 1px solid dimgrey;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="grid">
+        <div class="itm">
+            <form>
+                <label for="search">Search Employee</label>
+                <input id="search" class="searchBox" type="text" onkeyup="loadRecommendation(event)">
+            </form>
+            <div id="recommendation">
+
+            </div>
+        </div>
+    </div>
+    <script type="application/javascript">
+
+
+        function hello(ev) {
+            console.log('hello');
+        }
+
+        function debounce(fn, wait) {
+            var timerId;
+
+            return function(ev) {
+                clearTimeout(timerId);
+                timerId = setTimeout(function() {
+                    fn(ev);
+                }, wait);
+            };
+        }
+
+        function handler(event) {
+            console.log('The typed text = ' + event.target.value);
+            let targetString = event.target.value.toLowerCase();
+            let container = document.getElementById('recommendation');
+            container.innerHTML = '';
+            if (targetString.length > 0) {
+                Employees.filter((item) => {
+                    return (item.name.length > targetString.length) ? item.name.toLowerCase().startsWith(targetString) : targetString.startsWith(item.name.toLowerCase());
+                }).forEach((item,index) => {
+                    let divNode = document.createElement("div");
+                    let textNode = document.createTextNode(item.name + ' \n Employer : ' + item.company);
+                    divNode.appendChild(textNode);
+                    container.appendChild(divNode);
+                });
+            }
+            if(container.children.length > 0) {
+                container.className = 'containsChildren';
+            } else {
+                container.className = '';
+            }
+
+        }
+
+        var loadRecommendation = debounce(handler, 200);
+
+        var Employees = [
+            {"name":"Kinsley","company":"Photobug"},
+            {"name":"Cosetta","company":"Kanoodle"},
+            {"name":"Wit","company":"Zoonoodle"},
+            {"name":"Selby","company":"Voolia"},
+            {"name":"Dori","company":"Thoughtmix"},
+            {"name":"Peder","company":"Divavu"},
+            {"name":"Colby","company":"Topdrive"},
+            {"name":"Nari","company":"Wordtune"},
+            {"name":"Omar","company":"Pixonyx"},
+            {"name":"Dido","company":"Youopia"},
+            {"name":"Jackie","company":"Shufflebeat"},
+            {"name":"Sergio","company":"Skimia"},
+            {"name":"Lynn","company":"Tagopia"},
+            {"name":"Kessiah","company":"Ailane"},
+            {"name":"Gaspar","company":"Devshare"},
+            {"name":"Gabbie","company":"Yodo"},
+            {"name":"Jobey","company":"Rhyloo"},
+            {"name":"Giusto","company":"Wordtune"},
+            {"name":"Noelle","company":"Mydo"},
+            {"name":"Ailee","company":"Twitternation"},
+            {"name":"Olivier","company":"Quinu"},
+            {"name":"Patricia","company":"Jatri"},
+            {"name":"Fredericka","company":"Realpoint"},
+            {"name":"Charlene","company":"Skilith"},
+            {"name":"Cullin","company":"Wordtune"},
+            {"name":"Cleavland","company":"Photolist"},
+            {"name":"Brok","company":"Topdrive"},
+            {"name":"Lesley","company":"Roodel"},
+            {"name":"Judie","company":"Dabfeed"},
+            {"name":"Gratia","company":"Dynava"},
+            {"name":"Margarete","company":"Edgeify"},
+            {"name":"Nichole","company":"JumpXS"},
+            {"name":"Jammie","company":"Bluejam"},
+            {"name":"Bonita","company":"Pixoboo"},
+            {"name":"Sheffy","company":"Twitternation"},
+            {"name":"Almeta","company":"Podcat"},
+            {"name":"Nettle","company":"Chatterbridge"},
+            {"name":"Chiquia","company":"Feedbug"},
+            {"name":"Frasco","company":"Edgepulse"},
+            {"name":"Jarrod","company":"Pixonyx"},
+            {"name":"Catlee","company":"Kanoodle"},
+            {"name":"Consuela","company":"Flipbug"},
+            {"name":"Stoddard","company":"Pixonyx"},
+            {"name":"Jenelle","company":"Skinte"},
+            {"name":"Bruis","company":"Katz"},
+            {"name":"Buddie","company":"Thoughtstorm"},
+            {"name":"Jermaine","company":"Babbleset"},
+            {"name":"Manny","company":"Topicblab"},
+            {"name":"Cherey","company":"Avavee"},
+            {"name":"Lynnet","company":"Meetz"},
+            {"name":"Fara","company":"Browsetype"},
+            {"name":"Marietta","company":"Meedoo"},
+            {"name":"Seana","company":"Quinu"},
+            {"name":"Margi","company":"Meejo"},
+            {"name":"Winifred","company":"Eazzy"},
+            {"name":"Maurene","company":"Devify"},
+            {"name":"Whitby","company":"Meevee"},
+            {"name":"Isahella","company":"Voomm"},
+            {"name":"Suzanna","company":"Vimbo"},
+            {"name":"Evey","company":"Divavu"},
+            {"name":"Garnette","company":"Gabtype"},
+            {"name":"Brittni","company":"Katz"},
+            {"name":"Isidora","company":"Camimbo"},
+            {"name":"Lonee","company":"Jaxbean"},
+            {"name":"Lynsey","company":"Topicstorm"},
+            {"name":"Halette","company":"Reallinks"},
+            {"name":"Leah","company":"Jayo"},
+            {"name":"Willy","company":"Kare"},
+            {"name":"Shawn","company":"Edgetag"},
+            {"name":"Coralie","company":"Browseblab"},
+            {"name":"Rubina","company":"Rhynyx"},
+            {"name":"Keelby","company":"Mycat"},
+            {"name":"Fallon","company":"Twimbo"},
+            {"name":"Kali","company":"Dynabox"},
+            {"name":"Liva","company":"Skyvu"},
+            {"name":"Rollins","company":"Realbuzz"},
+            {"name":"Imogen","company":"Yakijo"},
+            {"name":"Laurena","company":"LiveZ"},
+            {"name":"Davon","company":"Aimbu"},
+            {"name":"Eliot","company":"Buzzdog"},
+            {"name":"Rubetta","company":"Feedmix"},
+            {"name":"Mylo","company":"Skidoo"},
+            {"name":"Salomon","company":"Skilith"},
+            {"name":"Rochella","company":"Wordify"},
+            {"name":"Karie","company":"Tagtune"},
+            {"name":"Drusi","company":"Gabtype"},
+            {"name":"Virgina","company":"JumpXS"},
+            {"name":"Cyndy","company":"Realcube"},
+            {"name":"Catrina","company":"Yombu"},
+            {"name":"Paton","company":"Viva"},
+            {"name":"Elsbeth","company":"Topicshots"},
+            {"name":"Yancey","company":"Flipbug"},
+            {"name":"Amata","company":"Wordpedia"},
+            {"name":"Nat","company":"Cogidoo"},
+            {"name":"Maryann","company":"Kwinu"},
+            {"name":"Lauren","company":"Gabcube"},
+            {"name":"Zarah","company":"Thoughtmix"},
+            {"name":"Willow","company":"Brainverse"},
+            {"name":"Chloris","company":"Realcube"},
+            {"name":"Adelheid","company":"Meedoo"},
+            {"name":"Reinold","company":"Innotype"},
+            {"name":"Annelise","company":"Viva"},
+            {"name":"Lorianne","company":"Vinte"},
+            {"name":"Giffy","company":"Twimm"},
+            {"name":"Abel","company":"Feedmix"},
+            {"name":"Lesly","company":"Aibox"},
+            {"name":"Rosmunda","company":"Zoomdog"},
+            {"name":"Cindy","company":"Gabtune"},
+            {"name":"Randene","company":"Skaboo"},
+            {"name":"Klarrisa","company":"Linkbridge"},
+            {"name":"Grover","company":"Blogpad"},
+            {"name":"Tally","company":"Tagopia"},
+            {"name":"Cherida","company":"Meezzy"},
+            {"name":"Conrado","company":"Fivespan"},
+            {"name":"Nessie","company":"Kare"},
+            {"name":"Dina","company":"Jaxspan"},
+            {"name":"Ebba","company":"Yodoo"},
+            {"name":"Pippy","company":"Trilith"},
+            {"name":"Demetria","company":"Ntag"},
+            {"name":"Freddi","company":"Dazzlesphere"},
+            {"name":"Alexa","company":"Feedfire"},
+            {"name":"Edwina","company":"Fivechat"},
+            {"name":"Deeann","company":"Lazz"},
+            {"name":"Decca","company":"Oyonder"},
+            {"name":"Millie","company":"Eare"},
+            {"name":"Finlay","company":"Mycat"},
+            {"name":"Jennica","company":"Voonte"},
+            {"name":"Gavrielle","company":"Cogilith"},
+            {"name":"Ines","company":"Edgeblab"},
+            {"name":"Ham","company":"Skyvu"},
+            {"name":"Paolo","company":"Twitterwire"},
+            {"name":"Matias","company":"Omba"},
+            {"name":"Lucky","company":"Trupe"},
+            {"name":"Gary","company":"Abata"},
+            {"name":"Jyoti","company":"Eidel"},
+            {"name":"Wendi","company":"Wordware"},
+            {"name":"Elora","company":"Miboo"},
+            {"name":"Augustine","company":"Photobean"},
+            {"name":"Olwen","company":"Abata"},
+            {"name":"Kip","company":"Wordpedia"},
+            {"name":"Claudia","company":"Roomm"},
+            {"name":"Hamlen","company":"Kare"},
+            {"name":"Corbet","company":"Zoozzy"},
+            {"name":"Rodrigo","company":"Oloo"},
+            {"name":"Pansie","company":"Gabvine"},
+            {"name":"Gradeigh","company":"Linkbridge"},
+            {"name":"Clair","company":"Kwideo"},
+            {"name":"Jori","company":"Yodoo"},
+            {"name":"Maje","company":"Kare"},
+            {"name":"Sidnee","company":"Gabtype"},
+            {"name":"Gertrude","company":"Rhynyx"},
+            {"name":"Jeannine","company":"Agimba"},
+            {"name":"Gwendolyn","company":"Twiyo"},
+            {"name":"Charlean","company":"Oyoba"},
+            {"name":"Tonia","company":"Oyoloo"},
+            {"name":"Borden","company":"Flashdog"},
+            {"name":"Emiline","company":"Livetube"},
+            {"name":"Sile","company":"Zooxo"},
+            {"name":"Matthaeus","company":"Devpoint"},
+            {"name":"Miranda","company":"Blogtag"},
+            {"name":"Mischa","company":"Yadel"},
+            {"name":"Derward","company":"Devbug"},
+            {"name":"Bertie","company":"Myworks"},
+            {"name":"Griswold","company":"Photospace"},
+            {"name":"Suzie","company":"Roombo"},
+            {"name":"Julius","company":"Wordtune"},
+            {"name":"Sherwin","company":"Buzzshare"},
+            {"name":"Goldy","company":"Mynte"},
+            {"name":"Jarid","company":"Linkbridge"},
+            {"name":"Abdul","company":"Camido"},
+            {"name":"Paulita","company":"Twitterbridge"},
+            {"name":"Lovell","company":"Eamia"},
+            {"name":"Rourke","company":"Gabtype"},
+            {"name":"Ashlie","company":"Youfeed"},
+            {"name":"Lovell","company":"Jazzy"},
+            {"name":"Matthiew","company":"Gevee"},
+            {"name":"Hadley","company":"DabZ"},
+            {"name":"Creigh","company":"Jabbersphere"},
+            {"name":"Loni","company":"Topicware"},
+            {"name":"Alric","company":"Eire"},
+            {"name":"Tansy","company":"Dynabox"},
+            {"name":"Tybalt","company":"Roombo"},
+            {"name":"Tobie","company":"Youbridge"},
+            {"name":"Yasmin","company":"Tazz"},
+            {"name":"Cari","company":"Thoughtmix"},
+            {"name":"Angelo","company":"Browsecat"},
+            {"name":"Kent","company":"Pixonyx"},
+            {"name":"Nicola","company":"Ntag"},
+            {"name":"Janelle","company":"Bubbletube"},
+            {"name":"Carolina","company":"Feednation"},
+            {"name":"Justis","company":"Trudoo"},
+            {"name":"Quinn","company":"Shuffledrive"},
+            {"name":"Marta","company":"Lazz"},
+            {"name":"Danyelle","company":"Babbleblab"},
+            {"name":"Alyce","company":"Oloo"},
+            {"name":"Padraig","company":"Topicblab"},
+            {"name":"Tasha","company":"Skinix"},
+            {"name":"Lovell","company":"Devbug"},
+            {"name":"Lou","company":"Fivebridge"},
+            {"name":"Mag","company":"Muxo"}
+        ];
+    </script>
+</body>
+</html>
