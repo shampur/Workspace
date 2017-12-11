@@ -7,12 +7,19 @@
         .grid{
             display: grid;
             grid-template-columns: 1fr;
-            justify-items: center;
+            grid-template-rows: .5fr 1fr 1fr;
             padding: 10px;
+            grid-gap: 20px;
+            justify-content: start;
         }
 
         .itm {
             padding: 30px;
+        }
+
+        .searchBlock {
+            justify-self: center;
+            grid-column: 1/2;
         }
 
         .searchBox {
@@ -51,11 +58,41 @@
             border: 1px solid dimgrey;
         }
 
+        .userList {
+            border: 2px solid grey;
+            border-radius: 4px;
+        }
+
+        .userList div {
+            text-decoration: underline;
+            color: #2869bf;
+        }
+
+        .userDetails {
+            color: #ededed;
+            background-color: #049fd9;
+            border-radius: 5px;
+            box-shadow: 0px 0px 16px -2px rgba(108,109,110,1);
+            font-family: Verdana;
+        }
+
+        @media (min-width: 800px) {
+            .grid {
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: 1fr 2fr;
+            }
+
+            .searchBlock {
+                grid-column: 1/3;
+                grid-row: span 1;
+            }
+        }
+
     </style>
 </head>
 <body>
     <div class="grid">
-        <div class="itm">
+        <div class="itm searchBlock">
             <form>
                 <label for="search">Search Employee</label>
                 <input id="search" class="searchBox" type="text" onkeyup="loadRecommendation(event)">
@@ -64,14 +101,17 @@
 
             </div>
         </div>
+        <div id="users" class="itm userList">
+
+        </div>
+        <div id="user" class="itm userDetails">
+
+        </div>
     </div>
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
     <script type="application/javascript">
 
-
-        function hello(ev) {
-            console.log('hello');
-        }
-
+        /* This implements a simple search box*/
         function debounce(fn, wait) {
             var timerId;
 
@@ -83,7 +123,7 @@
             };
         }
 
-        function handler(event) {
+        function searchHandler(event) {
             console.log('The typed text = ' + event.target.value);
             let targetString = event.target.value.toLowerCase();
             let container = document.getElementById('recommendation');
@@ -106,7 +146,64 @@
 
         }
 
-        var loadRecommendation = debounce(handler, 200);
+        var loadRecommendation = debounce(searchHandler, 200);
+
+        /* End of search handling */
+
+        /* Getting a list of all users from server, which supports cors*/
+        var listOfUsers = [];
+
+        function getUsers(detailsEventHandler) {
+            var userListContainer  = $('#users');
+
+            $.ajax('https://jsonplaceholder.typicode.com/users', {
+                success: function(data) {
+                    listOfUsers = data;
+                    listOfUsers.forEach((item) => {
+                        let node = $(`<div> ${item.name} </div>`).css('margin-top', '5px').css('cursor', 'pointer');
+                        node.click(detailsEventHandler);
+                        userListContainer.append(node);
+                    });
+                },
+                error: function(err) {
+                    console.log('Error while fetching data');
+                }
+            });
+        }
+
+        function detailsHandler(event) {
+            let index = $('#users div').index(event.target);
+            let user = listOfUsers[index];
+            let detailsContainer = $('#user');
+            detailsContainer.empty();
+            let detailNode = $(`
+                <div>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>Name : </td>
+                                <td>${user.name}</td>
+                            </tr>
+                            <tr>
+                                <td>Email : </td>
+                                <td>${user.email}</td>
+                            </tr>
+                            <tr>
+                                <td>Phone : </td>
+                                <td>${user.phone}</td>
+                            </tr>
+                            <tr>
+                                <td>Website : </td>
+                                <td>${user.website}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            `);
+            detailsContainer.append(detailNode);
+        }
+
+        getUsers(detailsHandler);
 
         var Employees = [
             {"name":"Kinsley","company":"Photobug"},
