@@ -16,3 +16,28 @@ let fibonacciNUmber = (n) => {
 };
 
 console.log('Fibonacci series with dynamic programming = ' + fibonacciNUmber(3));
+
+function fib(n) {
+    var lookup = [];
+    lookup[1] = 0;
+    lookup[2] = 1;
+    return (function fibo(n) {
+        if (n<=2) {
+            return lookup[n];
+        } else {
+            if (lookup[n] !== undefined) {
+                console.log('not calculated');
+                return lookup[n];
+            } else {
+                lookup[n] = fibo(n-1) + fibo(n-2);
+                return lookup[n];
+            }
+        }
+    })(n);
+}
+
+let x = fib(5);
+
+console.log("Fibo of 5 = " + x);
+
+
