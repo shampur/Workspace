@@ -24,7 +24,7 @@ var myOtherObj = {
     name: 'charan',
 
     printName1: () => {
-            console.log('name = ' + that.name);
+            console.log('name = ' + this.name);
     },
     printName2: function() {
         console.log('name = ' + this.name);

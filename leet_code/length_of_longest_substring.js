@@ -13,4 +13,4 @@ var lengthOfLongestSubstring = function(s) {
     return longest;
 };
 
-console.log(lengthOfLongestSubstring('dndf'));
+console.log(lengthOfLongestSubstring('geeksforgeeks'));

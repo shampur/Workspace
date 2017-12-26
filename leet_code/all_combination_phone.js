@@ -38,3 +38,59 @@ let getCombination = (a, b) => {
 
 let comb = printAllPhone('234');
 console.log('The combination of numbers = ' + JSON.stringify(comb));
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+    Print all combination method 2
+*/
+
+var phnum = '234';
+
+function get_all_combo(numstr) {
+    var allCombo = [];
+    //var revnums = numstr.slice(0).split('').reverse().join('');
+    function combi(str, nums) {
+        if (numstr.length === str.length && nums.length === 0) {
+            allCombo.push(str);
+            return;
+        }
+
+        var numtoprocess = nums[0];
+        var remainingnum = nums.slice(1);
+        var strtoprocess = phone[numtoprocess];
+        for(var i=0; i<strtoprocess.length; i++) {
+            combi(str + strtoprocess[i], remainingnum)
+        }
+    }
+    combi('', numstr);
+    return allCombo;
+}
+
+let allComb = get_all_combo(phnum);
+console.log('All combination of phone new method = ' + allComb);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
